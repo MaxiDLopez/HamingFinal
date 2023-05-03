@@ -131,7 +131,7 @@ public class menu {
                     
                         case 1:{
 
-                            Decodificar.leerArchivo(32);
+                            Decodificar.leerArchivo(32,false);
                             System.out.println("\nARCHIVO DE 32 BITS DECODIFICADO\n");
                             
                         
@@ -139,14 +139,14 @@ public class menu {
 
                         case 2:{
 
-                            Decodificar.leerArchivo(2048);
+                            Decodificar.leerArchivo(2048,false);
                             System.out.println("\nARCHIVO DE 2048 BITS DECODIFICADO\n");
                         
                         }break;
 
                         case 3:{
 
-                            Decodificar.leerArchivo(65536);
+                            Decodificar.leerArchivo(65536,false);
                             System.out.println("\nARCHIVO DE 65536 BITS DECODIFICADO\n");
                         
                         }break;
@@ -173,22 +173,22 @@ public class menu {
                     switch(opc2){
                     
                         case 1:{
-
-                            Archivo.leer(32,(int)(Math.log(32)/Math.log(2)), true);
+                            Decodificar.leerArchivo(32, true);
+                        //    Archivo.leer(32,(int)(Math.log(32)/Math.log(2)), true);
                             System.out.println("\nARCHIVO DE 32 BITS DECODIFICADO CORREGIDO\n");
                         
                         }break;
 
                         case 2:{
-
-                            Archivo.leer(2048,(int)(Math.log(2048)/Math.log(2)), true);
+                            Decodificar.leerArchivo(2048, true);
+                           // Archivo.leer(2048,(int)(Math.log(2048)/Math.log(2)), true);
                             System.out.println("\nARCHIVO DE 2048 BITS DECODIFICADO CORREGIDO\n");
                         
                         }break;
 
                         case 3:{
-
-                            Archivo.leer(65536,(int)(Math.log(65536)/Math.log(2)), true);
+                            Decodificar.leerArchivo(65536, true);
+                            //Archivo.leer(65536,(int)(Math.log(65536)/Math.log(2)), true);
                             System.out.println("\nARCHIVO DE 65536 BITS DECODIFICADO CORREGIDO\n");
                         
                         }break;

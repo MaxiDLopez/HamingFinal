@@ -157,6 +157,38 @@ public class funciones {
         return arreglo;
     }
 
+        public static int controlBit(ArrayList<Integer> arreglo, int bit)     
+    {
+        int resultado = 0;
+        int i = bit;
+        int x = (int)Math.pow(2, i);    //X tiene la posicion del bit de control
+
+        switch (arreglo.size()) {
+            case 1: resultado = arreglo.get(0);
+                break;
+            case 2: resultado = arreglo.get(0);
+                break;
+            case 3: resultado = arreglo.get(0) ^ arreglo.get(2);
+                break;
+                
+            default:
+                    for (int j = 1; j < arreglo.size(); j++) {
+                        if (((j >> i) & 1) == 1) {  
+                            if(x-1 != j-1){
+                            resultado = (arreglo.get((x-1)) ^ arreglo.get((j-1)));
+                            System.out.println("Revisando pos: "+ (j));
+                            arreglo.set(x-1, resultado);  //Actualizo bit de control
+                            }
+                        }
+                    }
+            
+                    resultado = arreglo.get(x-1);
+                break;
+        }
+        return resultado;
+    }
+
+/* 
     static int getParityBit(ArrayList<Integer> returnData,int pow){
         int parityBit = 0;  
         int size = returnData.size();
@@ -189,6 +221,7 @@ public class funciones {
 
         return parityBit;
     }
+*/
 
     static int ultimoBit(ArrayList<Integer> data,int bitsControl){
         int lastBit = 0; 
@@ -370,12 +403,20 @@ public class funciones {
     static ArrayList<Integer> bloqueCorregido(ArrayList<Integer>revisar,int bitsControl){
         ArrayList<Integer> nuevo = new ArrayList<Integer>();
         ArrayList<Integer> sindrome = new ArrayList<Integer>();
+        ArrayList<Integer> aux = revisar;
+        int b = bitsControl;
+        while(aux.size() < (int)(Math.pow(2,b))){
+            aux.add(0);
+        }
 
         int posError;
+
         //
         for (int i = 0; i < bitsControl; i++) {
-            sindrome.add(i, getParityBit(revisar, i));
+            sindrome.add(i, controlBit(aux, i));
         } 
+        //
+
         posError = obtenerPosError(sindrome);
         
         if (posError != 0) {

@@ -20,8 +20,8 @@ public class Decodificar{
 
     private static String nombre;
 
-    public static void leerArchivo(int bits) {//TIRA UNA EXCEPCION EN CASO DE NO ENCONTRAR UN ARCHIVO
-
+    public static void leerArchivo(int bits,boolean error) {//TIRA UNA EXCEPCION EN CASO DE NO ENCONTRAR UN ARCHIVO
+        int bControl = (int)(Math.log(bits)/Math.log(2));
 
         try{
 
@@ -63,7 +63,12 @@ public class Decodificar{
                     System.out.println("Bloque: "+bloque);
 
                     if( bloque.size() == bits){//Completamos un bloque pero con bits de control
-
+                        //
+                            //Sacar errores en caso de que venga con error
+                            if(error){
+                                bloque = funciones.bloqueCorregido(bloque, bControl);
+                            }
+                        //
                         aux = funciones.decodificar(bloque);//Decodficamos el bloque y agregamos la informacion en un nuevo arreglo
                         bloque.clear();//Reiniciamos el bloque
                         for(int i:aux){
@@ -97,7 +102,12 @@ public class Decodificar{
                 if(!bloque.isEmpty()){//Nos quedamos con un bloque sin completar
 
                     System.out.println("\nQUEDARON BITS EN EL BLoQOUE\n");
-                    
+                    //
+                    if(error){
+                    bControl = (int)(Math.log(bloque.size())/Math.log(2));
+                    bloque = funciones.bloqueCorregido(bloque, bControl);
+                    }
+                    //
                     while( bloque.size() < bits){//Lo completamos con 0
                         bloque.add(0);
                     }
