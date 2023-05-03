@@ -26,15 +26,15 @@ public class Decodificar{
         try{
 
             if(bits == 32){//Obetener la ruta del archivo correspondiente
-                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming\\HA1.txt");
+                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA1.txt");
                 nombre = "DE1.txt";
             }
             else if(bits == 2048){
-                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming\\HA2.txt");
+                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA2.txt");
                 nombre = "DE2.txt";
             }
             else{
-                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming\\HA3.txt");
+                archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA3.txt");
                 nombre = "DE3.txt";
             }
 

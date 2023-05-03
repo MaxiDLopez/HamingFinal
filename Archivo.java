@@ -9,6 +9,7 @@ public class Archivo{
 
     public static ArrayList<Integer> arreglo = new ArrayList<Integer>();
     public static ArrayList<Integer> aux;
+    public static ArrayList<Character> caracter = new ArrayList<Character>();
 
     public static void proteger(int bloque, int bitsControl, Boolean error){
         int caract;
@@ -284,47 +285,47 @@ public class Archivo{
         }
 }
     //
-    public static void escribir(String nuevo, ArrayList<Integer> arreglo){
+    public static void escribir(String nuevo, ArrayList<Integer> bits){
         
-            BufferedWriter bw = null;
-            FileWriter fw = null;
+        BufferedWriter bw = null;
+        FileWriter fw = null;
+        caracter.clear();
 
-            try {
-                
-                File f = new File(nuevo);
-                
-                // Si el archivo no existe, se crea!S
-                if (!f.exists()) {
-                    f.createNewFile();
-                    System.out.println("\nARCHIVO CREADO\n");
-                }
-
-
-                // flag true, indica adjuntar información al archivo.
-                fw = new FileWriter(f.getAbsoluteFile(), true);
-                bw = new BufferedWriter(fw);
-
-               for(int i=0; i < funciones.convertirInvers(arreglo).length ; i++){
-                    
-                    fw.write(funciones.convertirInvers(arreglo)[i]);
-                    
-                }
-
-                System.out.println("información agregada!");
-            } catch (IOException e) {
-                e.printStackTrace();
-            } finally {
-                try {
-                                //Cierra instancias de FileWriter y BufferedWriter
-                    if (bw != null)
-                        bw.close();
-                    if (fw != null)
-                        fw.close();
-                
-                }catch(Exception e){ //Si muestro un error en la escritura, lo muestra
-                        JOptionPane.showMessageDialog(null,"Ha sucedido un error en escribir: "+e);
-                }
+        try {
+            
+            File f = new File(nuevo);
+            
+            // Si el archivo no existe, se crea
+            if (!f.exists()) {
+                f.createNewFile();
+                System.out.println("\nARCHIVO CREADO: " + nuevo + "\n");
             }
-    }
+
+
+            // flag true, indica adjuntar información al archivo.
+            fw = new FileWriter(f.getAbsoluteFile(), true);
+            bw = new BufferedWriter(fw);
+
+            caracter = funciones.bitstoCharacters(bits);
+
+            for(char i:caracter){//imprimimos cada caracter leido
+                bw.write(i);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                            //Cierra instancias de FileWriter y BufferedWriter
+                if (bw != null)
+                    bw.close();
+                if (fw != null)
+                    fw.close();
+            
+            }catch(Exception e){ //Si muestro un error en la escritura, lo muestra
+                    JOptionPane.showMessageDialog(null,"Ha sucedido un error en escribir: "+e);
+            }
+        }
+}
 
 }

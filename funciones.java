@@ -7,10 +7,35 @@ import java.io.*;
 
 public class funciones {
 
-    public static char arr1[] = new char[4];
-    public static char arr2[] = new char[256];
-    public static char arr3[] = new char[8192];
+    public static ArrayList<Character> caracteres = new ArrayList<Character>();
     public static int acumulador=0;
+
+    public static ArrayList<Character> bitstoCharacters(ArrayList<Integer> arreglo){
+    
+        caracteres.clear();
+
+        int pos=0, exponente;
+
+        for(int j=0; j<(arreglo.size()/8); j++){
+
+            acumulador = 0;
+            exponente = 7;  //7?
+
+            for(int i=pos; i<pos+8 ; i++){
+        
+                if (arreglo.get(i) == 1){//SI el bit es 1, entonces lo elevamos a la potencia correspondiente
+                    
+                    acumulador = acumulador + (int)(Math.pow(2, (double)exponente));
+                }
+                //En el caso de que el bit es 0, no hace falta hacer nada
+                exponente=exponente-1;
+            }
+            pos+=8;
+            caracteres.add((char)acumulador);
+        }
+
+        return caracteres;
+    }
 
     public static char[] convertirInvers(ArrayList<Integer> arreglo){
      char arr1[] = new char[4];
