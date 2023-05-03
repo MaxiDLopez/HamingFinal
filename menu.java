@@ -131,7 +131,7 @@ public class menu {
                     
                         case 1:{
 
-                            Archivo.leer(32,(int)(Math.log(32)/Math.log(2)), false);
+                            Decodificar.leerArchivo(32);
                             System.out.println("\nARCHIVO DE 32 BITS DECODIFICADO\n");
                             
                         
@@ -139,14 +139,14 @@ public class menu {
 
                         case 2:{
 
-                            Archivo.leer(2048,(int)(Math.log(2048)/Math.log(2)), false);
+                            Decodificar.leerArchivo(2048);
                             System.out.println("\nARCHIVO DE 2048 BITS DECODIFICADO\n");
                         
                         }break;
 
                         case 3:{
 
-                            Archivo.leer(65536,(int)(Math.log(65536)/Math.log(2)), false);
+                            Decodificar.leerArchivo(65536);
                             System.out.println("\nARCHIVO DE 65536 BITS DECODIFICADO\n");
                         
                         }break;
