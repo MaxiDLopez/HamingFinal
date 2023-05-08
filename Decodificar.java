@@ -7,8 +7,6 @@ import javax.swing.JOptionPane;
 
 public class Decodificar{
 
-    private static int caract;
-
     private static ArrayList<Integer> bloque = new ArrayList<Integer>();
     private static ArrayList<Integer> aux = new ArrayList<Integer>();
     private static ArrayList<Integer> informacion = new ArrayList<Integer>();;
@@ -24,7 +22,6 @@ public class Decodificar{
         int bControl = (int)(Math.log(bits)/Math.log(2));
 
         try{
-
 
 
             if(error){
@@ -69,15 +66,31 @@ public class Decodificar{
                 contenedor.clear();
                 aux.clear();
 
+                String s ="";
                 fr = new FileReader(archivo);
                 br = new BufferedReader(fr);
 
-                caract= br.read();
+                int caract= br.read();
 
                 while(caract != -1){//Si el caracter no es nulo
-                
-                    aux = funciones.CaracterToBits(caract);
 
+                    System.out.println("\nCaracter: "+ caract + " = " + (char)caract);
+
+                    if((char)caract != '?'){
+                        aux = funciones.CaracterToBits(caract);
+                    }
+                    else{
+                        aux.clear();
+                        aux.add(1);
+                        aux.add(0);
+                        aux.add(0);
+                        aux.add(0);
+                        aux.add(0);
+                        aux.add(1);
+                        aux.add(1);
+                        aux.add(1);
+                    }
+                    
                     for(int i:aux){
                         bloque.add(i);
                     }

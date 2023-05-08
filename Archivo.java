@@ -32,7 +32,7 @@ public class Archivo{
 
         try {
             //FileReader fr = new FileReader("C:\\Users\\Carolina\\Desktop\\MiercolesNoche\\lectura.txt");//Abre el arhicvo
-            FileReader fr = new FileReader("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\texto.txt");//Abre el arhicvo
+            FileReader fr = new FileReader("C:\\Users\\Carolina\\Desktop\\HamingFinal\\texto.txt");//Abre el arhicvo
             BufferedReader br = new BufferedReader(fr);
             caract = br.read();//leer un caracterer
 
@@ -132,6 +132,7 @@ public class Archivo{
 
             for(char i:caracter){//imprimimos cada caracter leido
                 bw.write(i);
+                System.out.println(i);
             }
 
         } catch (IOException e) {

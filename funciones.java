@@ -10,6 +10,7 @@ public class funciones {
     public static ArrayList<Character> caracteres = new ArrayList<Character>();
     public static int acumulador=0;
 
+
     public static ArrayList<Character> bitstoCharacters(ArrayList<Integer> arreglo){
     
         caracteres.clear();
@@ -188,40 +189,6 @@ public class funciones {
         return resultado;
     }
 
-/* 
-    static int getParityBit(ArrayList<Integer> returnData,int pow){
-        int parityBit = 0;  
-        int size = returnData.size();
-        System.out.println("Size es "+size);
-//Problema
-        for (int i = 0; i < size; i++) {
-          
-            if(returnData.get(i) != 2){
-                System.out.println("i vale: "+i);
-                int k = (i+1);
-                String str = Integer.toBinaryString(k);  
-                System.out.println("STR: "+str);
-                int temp = ((Integer.parseInt(str)) / ((int) Math.pow(10, pow))) % 10;  
-                if(temp == 1){
-                    if(returnData.get(i) == 1){
-                        parityBit = (parityBit + 1) % 2;
-                    }
-                }
-            }
-        }
-// problema cerrado
-
-        for (int j = 0; j < size; j++) {
-            int x = (int)Math.pow(2, pow); //X es la posición del bit de control
-
-            if (returnData.get(j) != 2) {
-                
-            }
-        }
-
-        return parityBit;
-    }
-*/
 
     static int ultimoBit(ArrayList<Integer> data,int bitsControl){
         int lastBit = 0; 
