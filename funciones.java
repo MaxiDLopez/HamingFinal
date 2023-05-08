@@ -264,7 +264,6 @@ public class funciones {
             for (int n = desde; n < tope; n++) {
                 array.remove(array.size()-1);
             }
-            System.out.println("Guarde las sobras");
 
             //Distribuir data y bits de control en el modulo
             for(int i = 1; i <= tope; i++) {  
@@ -277,31 +276,16 @@ public class funciones {
                 }  
             }
 
-         System.out.println("Distribui la data");
-         System.out.println("Size es: "+hamming.size());
-         System.out.println("El vector es: "+hamming);
-         System.out.println("CHECK");
-
-            //Dar valor a los bits de paridad
-            /* 
-            for(int i = 0; i < r; i++) {  
-                System.out.println("Le doy valor al bit: "+((int) Math.pow(2, i)));
-                hamming.set(((int) Math.pow(2, i))-1, getParityBit(hamming, i));
-                System.out.println("Ya le di valor");
-            }    
-            */
             hamming = control(hamming, r);
-            System.out.println("Di valor a los bits de paridad");
-           
-            //Bit 32
-             hamming.set(hamming.size()-1, ultimoBit(hamming, r));
+
+            hamming.set(hamming.size()-1, ultimoBit(hamming, r));
             
 
-             int numero=0;
+            int numero=0;
 
              //Introducir error
-             if(error){             //Error viene por parametro.Va a ser True si se selecciono "proteger con errores"
-              if((int)(Math. random()*2+1) == 1){ //Devuelve 1 o 2.Si devuelve 1 meto error
+            if(error){             //Error viene por parametro.Va a ser True si se selecciono "proteger con errores"
+                if((int)(Math. random()*2+1) == 1){ //Devuelve 1 o 2.Si devuelve 1 meto error
                     numero = (int)(Math. random()*hamming.size()+1);    //Posicion donde se va a introducir el error
                     if(hamming.get(numero-1) == 0){
                         hamming.set(numero-1,1);
@@ -309,13 +293,9 @@ public class funciones {
                         hamming.set(numero-1,0);
                     }
                 }
-             }
-             
-            //System.out.println("Mando a imprimir,mi size es: "+hamming.size());
-            //System.out.println(hamming);
-            //Ahora el array "hamming" esta listo para ser guardado en txt
-            //System.out.println("Llamando a imprimir");
+            }
             
+            System.out.println("\nYa hamizado\n");
             if(error){//SI viene con errores
                 if(hamming.size() == 32){
                     Archivo.escribir("HE1.txt", hamming);

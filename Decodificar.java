@@ -29,15 +29,15 @@ public class Decodificar{
 
             if(error){
                 if(bits == 32){//Obetener la ruta del archivo correspondiente
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HE1.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HE1.txt");
                      nombre = "DEcE1.txt";
                  }
                  else if(bits == 2048){
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HE2.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HE2.txt");
                      nombre = "DEcE2.txt";
                  }
                  else{
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HE3.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HE3.txt");
                      nombre = "DEcE3.txt";
                  }
 
@@ -45,15 +45,15 @@ public class Decodificar{
 
                 if(bits == 32){//Obetener la ruta del archivo correspondiente
                     System.out.println("aca");
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA1.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HA1.txt");
                      nombre = "DE1.txt";
                  }
                  else if(bits == 2048){
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA2.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HA2.txt");
                      nombre = "DE2.txt";
                  }
                  else{
-                     archivo = new File("C:\\Users\\Carolina\\Desktop\\Haming-alternativo\\HA3.txt");
+                     archivo = new File("C:\\Users\\Carolina\\Desktop\\HamingFinal\\HA3.txt");
                      nombre = "DE3.txt";
                  }
      
@@ -72,7 +72,7 @@ public class Decodificar{
                 fr = new FileReader(archivo);
                 br = new BufferedReader(fr);
 
-                caract=br.read();
+                caract= br.read();
 
                 while(caract != -1){//Si el caracter no es nulo
                 
@@ -81,11 +81,11 @@ public class Decodificar{
                     for(int i:aux){
                         bloque.add(i);
                     }
+                    System.out.println(bloque);
 
-                    System.out.println("Bloque: "+bloque);
 
                     if( bloque.size() == bits){//Completamos un bloque pero con bits de control
-                        //
+
                             //Sacar errores en caso de que venga con error
                             if(error){
                                 bloque = funciones.bloqueCorregido(bloque, bControl);
@@ -97,9 +97,6 @@ public class Decodificar{
                             informacion.add(i);
                         }
 
-                        System.out.println("Informacion: "+informacion);
-                        System.out.println("Informacion cantidad: "+ informacion.size());
-
                         if( informacion.size() >= bits){//Completamos un bloque solamente de informacion
 
                             while( contenedor.size() < bits ){
@@ -110,9 +107,6 @@ public class Decodificar{
                             }
 
                             Archivo.escribir(nombre, contenedor);
-                            System.out.println("contenedor: "+contenedor);
-                            System.out.println("Informacion: "+informacion);
-                            System.out.println("Informacion cantidad: "+ informacion.size());
                             contenedor.clear();
                         }
                     
