@@ -76,10 +76,10 @@ public class Decodificar{
 
                     System.out.println("\nCaracter: "+ caract + " = " + (char)caract);
 
-                    if((char)caract != '?'){
+                    //if((char)caract != '?'){
                         aux = funciones.CaracterToBits(caract);
-                    }
-                    else{
+                    //}
+                    /*else{
                         aux.clear();
                         aux.add(1);
                         aux.add(0);
@@ -89,7 +89,7 @@ public class Decodificar{
                         aux.add(1);
                         aux.add(1);
                         aux.add(1);
-                    }
+                    }*/
                     
                     for(int i:aux){
                         bloque.add(i);

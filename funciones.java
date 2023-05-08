@@ -7,13 +7,16 @@ import java.io.*;
 
 public class funciones {
 
-    public static ArrayList<Character> caracteres = new ArrayList<Character>();
+    public static ArrayList<Integer> caracteres = new ArrayList<Integer>();
     public static int acumulador=0;
+    
 
 
-    public static ArrayList<Character> bitstoCharacters(ArrayList<Integer> arreglo){
+    public static byte[] bitstoCharacters(ArrayList<Integer> arreglo){
     
         caracteres.clear();
+
+        byte[] arr1 = new byte[4];
 
         int pos=0, exponente;
 
@@ -32,10 +35,16 @@ public class funciones {
                 exponente=exponente-1;
             }
             pos+=8;
-            caracteres.add((char)acumulador);
+            
+            arr1[j] = (byte) acumulador;
+
+            //caracteres.add(acumulador);
+            System.out.println(acumulador);
         }
 
-        return caracteres;
+        System.out.println(arr1);
+
+        return arr1;
     }
 
     public static char[] convertirInvers(ArrayList<Integer> arreglo){

@@ -9,7 +9,8 @@ public class Archivo{
 
     public static ArrayList<Integer> arreglo = new ArrayList<Integer>();
     public static ArrayList<Integer> aux;
-    public static ArrayList<Character> caracter = new ArrayList<Character>();
+    public static ArrayList<Integer> caracter = new ArrayList<Integer>();
+    public static byte[] a;
 
     public static void proteger(int bloque, int bitsControl, Boolean error){
         int caract;
@@ -124,16 +125,14 @@ public class Archivo{
 
 
             // flag true, indica adjuntar información al archivo.
-            fw = new FileWriter(f.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
+            FileOutputStream fo = new FileOutputStream(f);
+            //fw = new FileWriter(f.getAbsoluteFile(), true);
+            //bw = new BufferedWriter(fw);
 
-            caracter = funciones.bitstoCharacters(bits);
-            System.out.println(bits);
+            a = funciones.bitstoCharacters(bits);
 
-            for(char i:caracter){//imprimimos cada caracter leido
-                bw.write(i);
-                System.out.println(i);
-            }
+
+            fo.write(a);
 
         } catch (IOException e) {
             e.printStackTrace();
