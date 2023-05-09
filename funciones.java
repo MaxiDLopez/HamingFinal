@@ -33,8 +33,6 @@ public class funciones {
                 exponente=exponente-1;
             }
             pos+=8;
-
-            System.out.println("acumulador: " + acumulador);
             
             arr.add((byte)acumulador);
 
@@ -268,7 +266,6 @@ public class funciones {
                 }
             }
             
-            System.out.println("\nYa hamizado\n");
             if(error){//SI viene con errores
                 if(hamming.size() == 32){
                     Archivo.escribir("HE1.txt", hamming);
