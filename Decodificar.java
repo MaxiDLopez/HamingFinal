@@ -66,30 +66,16 @@ public class Decodificar{
                 contenedor.clear();
                 aux.clear();
 
-                String s ="";
-                fr = new FileReader(archivo);
-                br = new BufferedReader(fr);
+                FileInputStream fi = new FileInputStream(archivo);
 
-                int caract= br.read();
+                int byt = fi.read();
 
-                while(caract != -1){//Si el caracter no es nulo
+                while(byt != -1){//Si el caracter no es nulo
 
-                    System.out.println("\nCaracter: "+ caract + " = " + (char)caract);
+                    System.out.println("\nCaracter: " + byt);
 
                     //if((char)caract != '?'){
-                        aux = funciones.CaracterToBits(caract);
-                    //}
-                    /*else{
-                        aux.clear();
-                        aux.add(1);
-                        aux.add(0);
-                        aux.add(0);
-                        aux.add(0);
-                        aux.add(0);
-                        aux.add(1);
-                        aux.add(1);
-                        aux.add(1);
-                    }*/
+                    aux = funciones.CaracterToBits(byt);
                     
                     for(int i:aux){
                         bloque.add(i);
@@ -100,15 +86,17 @@ public class Decodificar{
                     if( bloque.size() == bits){//Completamos un bloque pero con bits de control
 
                             //Sacar errores en caso de que venga con error
-                            if(error){
-                                bloque = funciones.bloqueCorregido(bloque, bControl);
-                            }
+                        if(error){
+                            bloque = funciones.bloqueCorregido(bloque, bControl);
+                        }
                         //
                         aux = funciones.decodificar(bloque);//Decodficamos el bloque y agregamos la informacion en un nuevo arreglo
                         bloque.clear();//Reiniciamos el bloque
                         for(int i:aux){
                             informacion.add(i);
                         }
+
+                        System.out.println("\nBloque de Informacion Antes: " + informacion);
 
                         if( informacion.size() >= bits){//Completamos un bloque solamente de informacion
 
@@ -119,22 +107,27 @@ public class Decodificar{
                             
                             }
 
+                            System.out.println("\nBloque Contenedor: " + contenedor);
+
+                            System.out.println("\nBloque de Informacion Despues: " + informacion);
                             Archivo.escribir(nombre, contenedor);
                             contenedor.clear();
                         }
                     
                     }
 
-                    caract=br.read();
+                    byt = fi.read();
                 }
+
+                fi.close();
 
                 if(!bloque.isEmpty()){//Nos quedamos con un bloque sin completar
 
                     System.out.println("\nQUEDARON BITS EN EL BLoQOUE\n");
                     //
                     if(error){
-                    bControl = (int)(Math.log(bloque.size())/Math.log(2));
-                    bloque = funciones.bloqueCorregido(bloque, bControl);
+                        bControl = (int)(Math.log(bloque.size())/Math.log(2));
+                        bloque = funciones.bloqueCorregido(bloque, bControl);
                     }
                     //
                     while( bloque.size() < bits){//Lo completamos con 0
@@ -146,9 +139,9 @@ public class Decodificar{
 
                 }//Ya completamos el ultimo bloque codificado
 
-                if ( informacion.size() > bits ){//Hay mas de un caracter para imprimir
+                if ( informacion.size() >= bits ){//Hay mas de un caracter para imprimir
 
-                    System.out.println("\nQUEDARON MAS DE UN CARACTER EN Informacion\n");
+                    System.out.println("\nQUEDARON UNO o MAS CARACTER EN Informacion\n");
 
                     while( contenedor.size() < bits ){
 
@@ -157,7 +150,6 @@ public class Decodificar{
                     
                     }
                     Archivo.escribir(nombre, contenedor);
-                    System.out.println(contenedor);
                     contenedor.clear();
                 
                 }

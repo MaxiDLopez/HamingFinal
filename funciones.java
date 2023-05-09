@@ -9,14 +9,12 @@ public class funciones {
 
     public static ArrayList<Integer> caracteres = new ArrayList<Integer>();
     public static int acumulador=0;
+    public static ArrayList<Byte> arr = new ArrayList<Byte>();
+
+
+    public static ArrayList<Byte> bitstoCharacters(ArrayList<Integer> arreglo){
     
-
-
-    public static byte[] bitstoCharacters(ArrayList<Integer> arreglo){
-    
-        caracteres.clear();
-
-        byte[] arr1 = new byte[4];
+        arr.clear();
 
         int pos=0, exponente;
 
@@ -35,16 +33,15 @@ public class funciones {
                 exponente=exponente-1;
             }
             pos+=8;
-            
-            arr1[j] = (byte) acumulador;
 
-            //caracteres.add(acumulador);
-            System.out.println(acumulador);
+            System.out.println("acumulador: " + acumulador);
+            
+            arr.add((byte)acumulador);
+
+
         }
 
-        System.out.println(arr1);
-
-        return arr1;
+        return arr;
     }
 
     public static char[] convertirInvers(ArrayList<Integer> arreglo){

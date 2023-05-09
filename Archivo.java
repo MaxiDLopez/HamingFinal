@@ -9,8 +9,7 @@ public class Archivo{
 
     public static ArrayList<Integer> arreglo = new ArrayList<Integer>();
     public static ArrayList<Integer> aux;
-    public static ArrayList<Integer> caracter = new ArrayList<Integer>();
-    public static byte[] a;
+    public static ArrayList<Byte> bt = new ArrayList<Byte>();
 
     public static void proteger(int bloque, int bitsControl, Boolean error){
         int caract;
@@ -111,7 +110,7 @@ public class Archivo{
         
         BufferedWriter bw = null;
         FileWriter fw = null;
-        caracter.clear();
+        bt.clear();
 
         try {
             
@@ -123,16 +122,14 @@ public class Archivo{
                 System.out.println("\nARCHIVO CREADO: " + nuevo + "\n");
             }
 
+            FileOutputStream fo = new FileOutputStream(f, true);
 
-            // flag true, indica adjuntar información al archivo.
-            FileOutputStream fo = new FileOutputStream(f);
-            //fw = new FileWriter(f.getAbsoluteFile(), true);
-            //bw = new BufferedWriter(fw);
+            bt = funciones.bitstoCharacters(bits);
 
-            a = funciones.bitstoCharacters(bits);
+            for(byte i: bt){
+                fo.write(i);
+            }
 
-
-            fo.write(a);
 
         } catch (IOException e) {
             e.printStackTrace();
